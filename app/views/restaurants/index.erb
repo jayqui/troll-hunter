@@ -1,0 +1,9 @@
+<h1> Welcome to all the restaurants! Here are their douchey comments! </h1>
+
+  <%@restaurants.each do |restaurant| %>
+  <h3>Name: <a href="/restaurant/<%=restaurant.id%>"><%=restaurant.name%></a></h3>
+    <%restaurant.reviews.each do |review| %>
+      <h4> <%=review.body%></h4>
+    <%end%>
+  <%end%>
+
