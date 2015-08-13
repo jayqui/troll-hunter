@@ -1,8 +1,8 @@
-# require 'open-uri'
-require "nokogiri"
-require "net/http"
-require "uri"
-require "csv"
+require_relative "find_urls"
+# require "nokogiri"
+# require "net/http"
+# require "uri"
+# require "csv"
 
 urls = ["ninis-deli-chicago","chicago-pizza-tours-chicago","somethin-sweet-donuts-chicago-3"]
 
@@ -17,13 +17,10 @@ end
 # FIND THE NUMBER OF THE REVIEWS BASED ON THE FRONT PAGE
 
 def find_num_of_reviews(html_file)
-  # html_file = Nokogiri::HTML(File.open("db/html_files/#{url}.html"))
-  # html_file = create_html_file(url)
   html_file.search(".review-count > span")[0].inner_text
 end
 
 def find_restaurant_name(html_file)
-  # html = create_html_file(url)
   html_file.search(".biz-page-title")[0].inner_text
 end
 
@@ -45,7 +42,6 @@ urls.each do |url|
   num_reviews = find_num_of_reviews(html_file).to_i
 
   ((num_reviews / 40) -1).times do |i|
-    # http = Net::HTTP.new(site)
     req = scrape(url,"?start=#{i*40}")
     response = http.request(req)
 
@@ -73,4 +69,4 @@ urls.each do |url|
 
 end
 
-# @alinea = Nokogiri::HTML(File.open('alinea_noko.html'))
+
