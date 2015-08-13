@@ -29,9 +29,10 @@ end
 
 restaurant_results = Nokogiri::HTML(File.open("db/restaurant_search_results/results.html"))
 
-@restaurant_array = restaurant_results.css(".biz-name").map {|link| link['href'].sub(/\/biz\//, "") }
+@restaurant_array = restaurant_results.css(".biz-name").map do |link|
+  # puts link['href']
+  # puts link['href'].sub(/\/biz\//, "")
+  link['href'].sub(/\/biz\//, "")
+end
 
-
-p @restaurant_array
-
-
+# p "@restaurant_array: #{@restaurant_array}"
