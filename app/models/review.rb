@@ -4,13 +4,14 @@ class Review < ActiveRecord::Base
 
   validate :worthy?
 
-  SEXY_WORDS = %(sexy sex sexual voluptuous penis masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative)
+  SEXY_WORDS = %w(sexy sex sexual voluptuous penis masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative mistress dick)
 
-  DRAMATIC_WORDS = %w(breathtaking vivid tragic emotional climatic farcical dramatic histrionic tragicomic striking powerful sensational startling thrilling powerful profound)
+  DRAMATIC_WORDS = %w(breathtaking vivid tragic emotional climatic farcical dramatic histrionic tragicomic striking powerful sensational startling thrilling powerful profound ex-husband ex-wife ex-partner ex-boyfriend ex-girlfriend fuck damn shit cock bitch asshole asshat twerk)
 
   def worthy?
-      sexual? || dramatic?
-      # errors.add(:worthy,"Sorry. Not worthy enough?")
+    unless self.sexual? || self.dramatic?
+      errors.add(:worthy, "please")
+    end
   end
 
   def self.too_sexual
