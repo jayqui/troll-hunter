@@ -1,0 +1,55 @@
+body {
+	/*background-image: url("http://www.pulsarwallpapers.com/data/media/3/Alien%20Ink%202560X1600%20Abstract%20Background.jpg");*/
+	background-image: url("http://www.momorialcards.com/images/light_textured_backround.jpg");
+	background-position: fixed;
+	background-size: 100% 100%;
+
+	background-color: transparent;
+	background-attachment: fixed;
+	background-repeat: no-repeat;
+}
+
+.player-names-table {
+	margin: auto;
+	/*background-color: aqua;*/
+	/*width: 80%;*/
+}
+
+.player-names-table td {
+	padding: 5px 10px;
+	font-size: 2em;
+}
+
+.racer_table	{
+	margin: auto;
+	width: 80%;
+	height: 500px;
+	table-layout: fixed;
+	border-collapse: collapse;
+	border-right: 2px solid black;
+}
+
+.racer_table td {
+	/*background-color: plum;*/
+}
+
+.keys-col {
+	background-color: lightyellow; 
+	color: red;"
+	/*font-size: 1.5em;*/
+	/*padding: 0 5px;*/
+}
+
+.racer_table td.active {
+	background-color: red;
+}
+
+#winner-field {
+	margin-top: 4%;
+	font-size: 2.5em;
+	text-align: center;
+	color: red;
+}
+
+.showcss{ display:block;}
+.hidecss{ display:none;}
