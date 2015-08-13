@@ -27,7 +27,7 @@ class Review < ActiveRecord::Base
   end
 
   def dramatic?
-    total_words = this.body.split(" ")
+    total_words = self.body.split(" ")
     total_words.any?{|word| DRAMATIC_WORDS.include?(word)}
   end
 
