@@ -4,18 +4,21 @@ require_relative "find_urls"
 # require "uri"
 # require "csv"
 
-urls = ["ninis-deli-chicago","chicago-pizza-tours-chicago","somethin-sweet-donuts-chicago-3"]
+# urls = ["ninis-deli-chicago","chicago-pizza-tours-chicago","somethin-sweet-donuts-chicago-3"]
+
+urls = @restaurant_array
 
 ### PUT HTML INTO NEW HTML FILES
 def scrape(name, query_param = "")
+  sleep(1)
   Net::HTTP::Get.new("/biz/#{name}#{query_param}", {"User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_5) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/44.0.2403.130 Safari/537.36"})
 end
 
 def create_html_file(url)
   html_file = Nokogiri::HTML(File.open("db/html_files/#{url}.html"))
 end
-# FIND THE NUMBER OF THE REVIEWS BASED ON THE FRONT PAGE
 
+# FIND THE NUMBER OF THE REVIEWS BASED ON THE FRONT PAGE
 def find_num_of_reviews(html_file)
   html_file.search(".review-count > span")[0].inner_text
 end
