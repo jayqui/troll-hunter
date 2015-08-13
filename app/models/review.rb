@@ -4,10 +4,10 @@ class Review < ActiveRecord::Base
 
   SEXY_WORDS = %(sexy sex sexual voluptuous penis masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative)
 
-  DRAMATIC_WORDS = %w(breathtaking vivid tragic emotional climatic farcical histrionic tragicomic striking powerful sensational startling thrilling powerful profound)
+  DRAMATIC_WORDS = %w(breathtaking vivid tragic emotional climatic farcical dramatic histrionic tragicomic striking powerful sensational startling thrilling powerful profound)
 
 
-  def Self.too_sexual
+  def self.too_sexual
     Review.all.select {|review| review.sexual?}
   end
 
@@ -16,7 +16,7 @@ class Review < ActiveRecord::Base
     total_words.any?{|word| SEXY_WORDS.include?(word)}
   end
 
-  def Self.too_dramatic
+  def self.too_dramatic
     Review.all.select{|review| review.dramatic?}
   end
 
