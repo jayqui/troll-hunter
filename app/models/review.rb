@@ -49,7 +49,6 @@ class Review < ActiveRecord::Base
       self.generate_sex_score
       self.generate_drama_score
       self.combined_score = self.sex_score + self.drama_score
-      self.save
   end
 
   def self.sort_by_combined_score
