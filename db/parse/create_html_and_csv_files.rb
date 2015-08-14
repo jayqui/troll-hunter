@@ -28,6 +28,8 @@ def find_restaurant_name(html_file)
 end
 
 urls.each do |url|
+  p "url: #{url}"
+
   site = "www.yelp.com"
   http = Net::HTTP.new(site)
   req = scrape(url)
@@ -60,7 +62,8 @@ urls.each do |url|
   reviews_array.uniq!
   restaurant_name = find_restaurant_name(html_file).strip
 
-  p reviews_array.count
+
+  p "reviews_array.count: #{reviews_array.count}"
 
   CSV.open("db/csv_files/#{url}.csv", "wb") do |csv|
     csv << [restaurant_name]
