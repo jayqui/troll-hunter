@@ -4,7 +4,6 @@ def create_seeds(file)
 
   CSV.foreach("db/csv_files/#{file}",headers:true) do |review|
     Review.create(body:review,restaurant_id:restaurant.id)
-    review.generate_scores
   end
 end
 
