@@ -63,5 +63,20 @@ body {
 	margin-left: 200px;
 }
 
+.nav-trolls {
+  font-size: .5em;
+}
+
+.restaurant-name {
+  text-align: center;
+  font-family: italic;
+  font-weight: bold;
+}
+
+.douche-score {
+  font-size: 1em;
+  font-style: italic;
+}
+
 
 
