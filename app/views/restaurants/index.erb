@@ -1,6 +1,6 @@
 <h1> Welcome to all the Trolled restaurants!</h1>
 
   <%@restaurants.each do |restaurant| %>
-  <h3>Name: <a href="/restaurant/<%=restaurant.id%>"><%=restaurant.name[2..-3]%></a></h3>
+  <h3>Name: <a href="/restaurants/<%=restaurant.id%>"><%=restaurant.full_name %></a></h3>
   <%end%>
 
