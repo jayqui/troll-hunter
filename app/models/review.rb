@@ -32,5 +32,51 @@ class Review < ActiveRecord::Base
     total_words.any?{|word| DRAMATIC_WORDS.include?(word)}
   end
 
+  def self.generate_scores
+    Review.all.each do |review|
+      review.generate_sex_score
+      review.generate_drama_score
+      review.combined_score = review.sex_score + review.drama_score
+      review.save
+    end
+  end
+
+  def self.sort_by_combined_score
+    Review.all.sort { |x,y| y.combined_score <=> x.combined_score } 
+  end
+  
+  def generate_drama_score
+    total_words = self.body.split(" ")
+    found_one = false
+    total_words.each do |word|
+      if DRAMATIC_WORDS.include?(word)
+        found_one = true
+        if self.drama_score
+          self.drama_score += 1 
+        else
+          self.drama_score = 1
+        end
+      end
+    end
+    self.drama_score = 0 if !found_one
+    self.save
+  end
+
+  def generate_sex_score
+    total_words = self.body.split(" ")
+    found_one = false
+    total_words.each do |word|
+      if SEXY_WORDS.include?(word)
+        found_one = true
+        if self.sex_score
+          self.sex_score += 1 
+        else
+          self.sex_score = 1
+        end
+      end
+    end
+    self.sex_score = 0 if !found_one
+    self.save
+  end
 
 end
