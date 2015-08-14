@@ -1,4 +1,4 @@
 get '/reviews' do
-  @reviews = Review.sort_by_combined_score
-  erb :"reviews/home"
+  p @reviews = Review.order("combined_score DESC").limit(10)
+  erb :"reviews/index"
 end
