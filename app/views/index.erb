@@ -1,3 +1,12 @@
 <div id="container">
 <h1> TROLL HUNTING... </h1>
+
+<h3>Top 10 Trolled Restaurants in Chicago</h3>
+<ol>
+  <% @restaurants.each do |restaurant| %>
+  <li><a href="/restaurants/<%=restaurant.id%>"><%=restaurant.full_name %></a>: <%= restaurant.reviews.count %> troll reviews</li>
+  <% end %>
+</ol>
+
+<h4>See all restaurants</h4>
 </div>
