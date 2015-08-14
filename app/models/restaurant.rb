@@ -6,7 +6,7 @@ class Restaurant < ActiveRecord::Base
   end
 
   def reviews_by_score
-    self.reviews.order(combined_score: :desc)
+    self.reviews.sort { |x,y| y.combined_score <=> x.combined_score }
   end
 
 end
