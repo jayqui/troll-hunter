@@ -7,7 +7,7 @@ class Review < ActiveRecord::Base
 
   SEXY_WORDS = %w(sexy sex sexual voluptuous penis vagina pussy masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative mistress dick orgy orgasm)
 
-  DRAMATIC_WORDS = %w(gross pathetic miserable tacky Kardashian jesus Jesus Christ God god ex-husband ex-wife ex-partner ex-boyfriend ex-girlfriend fuck fucking motherfucking motherfucker damn goddamn shit shitty crap crappy cock bitch cunt asshole asshat twerk terrible horrible 9/11 scum vile fecle fecal douche douchebag dickwad cocksucker ??? !!! ?!? !?! ??)
+  DRAMATIC_WORDS = %w(gross pathetic miserable tacky kardashian jesus christ god ex-husband ex-wife ex-partner ex-boyfriend ex-girlfriend fuck fucking motherfucking motherfucker damn goddamn shit shitty crap crappy cock bitch cunt asshole asshat twerk terrible horrible 9/11 scum vile fecle fecal douche douchebag dickwad cocksucker ??? !!! ?!? !?! ??)
 
   def worthy?
     unless self.sexual? || self.dramatic?
@@ -59,7 +59,7 @@ class Review < ActiveRecord::Base
     total_words = self.body.split(" ")
     found_one = false
     total_words.each do |word|
-      if DRAMATIC_WORDS.include?(word)
+      if DRAMATIC_WORDS.include?(word.downcase)
         found_one = true
         if self.drama_score
           self.drama_score += 1
@@ -76,7 +76,7 @@ class Review < ActiveRecord::Base
     total_words = self.body.split(" ")
     found_one = false
     total_words.each do |word|
-      if SEXY_WORDS.include?(word)
+      if SEXY_WORDS.include?(word.downcase)
         found_one = true
         if self.sex_score
           self.sex_score += 1
