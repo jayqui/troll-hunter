@@ -1,6 +1,6 @@
 <h1> Welcome to all the Trolled restaurants!</h1>
 
-  <%@restaurants.each do |restaurant| %>
-  <h3>Name: <a href="/restaurants/<%=restaurant.id%>"><%=restaurant.full_name %></a></h3>
+  <%@restaurants.reverse_each do |restaurant| %>
+  <h3>Name: <a href="/restaurants/<%=restaurant.id%>"><%=restaurant.full_name %></a><small> - <%= restaurant.reviews.count %></small></h3>
   <%end%>
 
