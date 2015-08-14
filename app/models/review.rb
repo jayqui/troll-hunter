@@ -1,4 +1,5 @@
 class Review < ActiveRecord::Base
+  before_create :generate_scores
 	belongs_to :user
 	belongs_to :restaurant
 
@@ -44,13 +45,11 @@ class Review < ActiveRecord::Base
     end.join(" ")
   end
 
-  def self.generate_scores
-    Review.all.each do |review|
-      review.generate_sex_score
-      review.generate_drama_score
-      review.combined_score = review.sex_score + review.drama_score
-      review.save
-    end
+  def generate_scores
+      self.generate_sex_score
+      self.generate_drama_score
+      self.combined_score = self.sex_score + self.drama_score
+      self.save
   end
 
   def self.sort_by_combined_score
