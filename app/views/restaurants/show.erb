@@ -1,8 +1,12 @@
 <h1> <%= @restaurant.full_name%></h1>
-<ul>
-  <%@restaurant.reviews_by_score.each do |review| %>
-  <li class="review-content"><%=review.highlighted_review%></li>
-  <span class="douche-score"> Douche Score:<%=review.combined_score %></span><br><br>
+<ol class="review-ol">
+
+  <%@restaurant.reviews_by_score[0..9].each do |review| %>
+    <li class="review-content"><%= review.highlighted_review %></li>
+
+    <span class="douche-score"> Troll Score:<%=review.combined_score %></span><br><br>
   <% end %>
-</ul>
+
+  <button>HI!!</button>
+</ol>
 
