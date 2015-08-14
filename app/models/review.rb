@@ -57,6 +57,7 @@ class Review < ActiveRecord::Base
     Review.all.sort { |x,y| y.combined_score <=> x.combined_score }
   end
 
+
   def generate_drama_score
     total_words = self.body.split(" ")
     found_one = false
