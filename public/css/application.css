@@ -3,9 +3,20 @@ body {
 	background-position: fixed;
 	background-size: 100% 100%;
 
-	background-color: transparent;
+	/*background-color: transparent;*/
+	
+	background-color: #636;
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 }
 
+.outer-container {
+	margin: 20px auto;
+	padding: 15px 80px;
+	max-width: 750px;
+	border: 1px solid black;
+	background-color: white;
+}
+.outer-container h1, h2, h3 {	
+	text-align: center;
 }
