@@ -1,9 +1,19 @@
+* {
+	margin: 0;
+	padding: 0;
+	font-family: "Open Sans", Arial,"sans-serif";
+}
+
 body {
 	/*background-image: url("http://www.momorialcards.com/images/light_textured_backround.jpg");*/
+	/*background-image: url("https://c2.staticflickr.com/2/1019/5184949637_851f054bb9_b.jpg");*/
+	background-image: url("http://img06.deviantart.net/8bb9/i/2010/270/0/9/premade_room_background_12_by_farrahscreations-d2zmb1y.jpg");
 	background-position: fixed;
 	background-size: 100% 100%;
 
 	background-color: transparent;
+	/*background-color: #636;*/
+
 	background-attachment: fixed;
 	background-repeat: no-repeat;
 }
@@ -11,4 +21,16 @@ body {
 
 .flag-word {
   background: yellow;
+}
+
+.outer-container {
+	margin: 20px auto;
+	padding: 15px 150px;
+	max-width: 650px;
+	border: 1px solid black;
+	background-color: white;
+}
+
+.outer-container h1, h2, h3 {
+	text-align: center;
 }
