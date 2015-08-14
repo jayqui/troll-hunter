@@ -6,7 +6,7 @@ class Review < ActiveRecord::Base
 
   SEXY_WORDS = %w(sexy sex sexual voluptuous penis vagina pussy masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative mistress dick orgy orgasm)
 
-  DRAMATIC_WORDS = %w(gross pathetic miserable tacky Kardashian jesus Jesus Christ God god ex-husband ex-wife ex-partner ex-boyfriend ex-girlfriend fuck fucking motherfucking motherfucker damn goddamn shit shitty crap crappy cock bitch cunt asshole asshat twerk terrible horrible 9/11 scum vile fecle fecal)
+  DRAMATIC_WORDS = %w(gross pathetic miserable tacky Kardashian jesus Jesus Christ God god ex-husband ex-wife ex-partner ex-boyfriend ex-girlfriend fuck fucking motherfucking motherfucker damn goddamn shit shitty crap crappy cock bitch cunt asshole asshat twerk terrible horrible 9/11 scum vile fecle fecal douche douchebad dickwad cocksucker)
 
   def worthy?
     unless self.sexual? || self.dramatic?
@@ -32,5 +32,51 @@ class Review < ActiveRecord::Base
     total_words.any?{|word| DRAMATIC_WORDS.include?(word)}
   end
 
+  def self.generate_scores
+    Review.all.each do |review|
+      review.generate_sex_score
+      review.generate_drama_score
+      review.combined_score = review.sex_score + review.drama_score
+      review.save
+    end
+  end
+
+  def self.sort_by_combined_score
+    Review.all.sort { |x,y| y.combined_score <=> x.combined_score } 
+  end
+  
+  def generate_drama_score
+    total_words = self.body.split(" ")
+    found_one = false
+    total_words.each do |word|
+      if DRAMATIC_WORDS.include?(word)
+        found_one = true
+        if self.drama_score
+          self.drama_score += 1 
+        else
+          self.drama_score = 1
+        end
+      end
+    end
+    self.drama_score = 0 if !found_one
+    self.save
+  end
+
+  def generate_sex_score
+    total_words = self.body.split(" ")
+    found_one = false
+    total_words.each do |word|
+      if SEXY_WORDS.include?(word)
+        found_one = true
+        if self.sex_score
+          self.sex_score += 1 
+        else
+          self.sex_score = 1
+        end
+      end
+    end
+    self.sex_score = 0 if !found_one
+    self.save
+  end
 
 end
