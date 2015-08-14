@@ -1,0 +1,5 @@
+<h1> Here are the douchiest reviews! </h1>
+ <% @reviews.each do |review| %>
+    <p> <div class="restaurant-name"> Restaurant: <%=review.restaurant.full_name %></div> Douche Score: <%=review.combined_score %> </p>
+    <p><%= review.highlighted_review %> </p> <br>
+  <% end %>
