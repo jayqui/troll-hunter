@@ -1,7 +1,7 @@
 <h1> <%= @restaurant.full_name%></h1>
 <ul>
   <%@restaurant.reviews.each do |review| %>
-  <li class="review-content"><%=review.body%></li><br>
+  <li class="review-content"><%=review.highlighted_review%></li><br>
   <% end %>
 </ul>
 

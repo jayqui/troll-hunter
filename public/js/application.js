@@ -4,13 +4,13 @@ $(document).ready(function() {
 
     var dramaticWords =["gross", "pathetic", "miserable", "tacky", "Kardashian", "jesus", "Jesus", "Christ", "God", "god", "ex-husband", "ex-wife", "ex-partner", "ex-boyfriend", "ex-girlfriend", "fuck", "fucking", "motherfucking", "motherfucker", "damn", "goddamn", "shit", "shitty", "crap", "crappy", "cock", "bitch", "cunt", "asshole", "asshat", "twerk", "terrible", "horrible", "9/11", "scum", "vile", "fecle", "fecal"]
 
-    text = $(".review-content").text().split(" ");
+    // var text = $(".review-content").text().split(" ");
 
-    for (var i = 0; i < text.length;i++) {
-        if $.inArray(text[i],sexyWords) {
-            $(text[i]).addClass("flag-word")
-        }
-    }
+    // for (var i = 0; i < text.length;i++) {
+    //     if $.inArray(text[i],sexyWords) {
+    //         $(text[i]).addClass("flag-word")
+    //     }
+    // }
 
 
 })

@@ -32,5 +32,16 @@ class Review < ActiveRecord::Base
     total_words.any?{|word| DRAMATIC_WORDS.include?(word)}
   end
 
+  def highlighted_review
+    #SEXY_WORDS.each {|word| body.gsub }
+    self.body.split(" ").map do |word|
+      if SEXY_WORDS.include?(word) || DRAMATIC_WORDS.include?(word)
+        "<span class='flag-word'> #{word}</span>"
+      else
+        word
+      end
+    end.join(" ")
+  end
+
 
 end
