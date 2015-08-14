@@ -69,7 +69,6 @@ class Review < ActiveRecord::Base
       end
     end
     self.drama_score = 0 if !found_one
-    self.save
   end
 
   def generate_sex_score
@@ -86,7 +85,6 @@ class Review < ActiveRecord::Base
       end
     end
     self.sex_score = 0 if !found_one
-    self.save
   end
 
 
