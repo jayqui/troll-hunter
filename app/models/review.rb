@@ -43,7 +43,7 @@ class Review < ActiveRecord::Base
     split_body = self.body.split(" ")
     dictionary.each do |entry|
       split_body.map! do |word|
-        if word.include?(entry)
+        if word.downcase.include?(entry)
           "<span class='#{flag_name}'> #{word}</span>"
         else
           word
@@ -67,13 +67,15 @@ class Review < ActiveRecord::Base
   def generate_drama_score
     total_words = self.body.split(" ")
     found_one = false
-    total_words.each do |word|
-      if DRAMATIC_WORDS.include?(word.downcase)
-        found_one = true
-        if self.drama_score
-          self.drama_score += 1
-        else
-          self.drama_score = 1
+    DRAMATIC_WORDS.each do |entry|
+      total_words.each do |word|
+        if word.downcase.include?(entry)
+          found_one = true
+          if self.drama_score
+            self.drama_score += 1
+          else
+            self.drama_score = 1
+          end
         end
       end
     end
@@ -83,13 +85,15 @@ class Review < ActiveRecord::Base
   def generate_sex_score
     total_words = self.body.split(" ")
     found_one = false
-    total_words.each do |word|
-      if SEXY_WORDS.include?(word.downcase)
-        found_one = true
-        if self.sex_score
-          self.sex_score += 1
-        else
-          self.sex_score = 1
+    SEXY_WORDS.each do |entry|
+      total_words.each do |word|
+        if word.downcase.include?(entry)
+          found_one = true
+          if self.sex_score
+            self.sex_score += 1
+          else
+            self.sex_score = 1
+          end
         end
       end
     end
