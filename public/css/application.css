@@ -36,8 +36,12 @@ body {
 	font-size: 3em;
 }
 
-.flag-word {
+.flag-sexy {
   background: yellow;
+}
+
+.flag-dramatic {
+  background: #F86;
 }
 
 .outer-container {
