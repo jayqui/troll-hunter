@@ -1,4 +1,10 @@
 require_relative "find_urls"
+# require "nokogiri"
+# require "net/http"
+# require "uri"
+# require "csv"
+
+# urls = ["ninis-deli-chicago","chicago-pizza-tours-chicago","somethin-sweet-donuts-chicago-3"]
 
 urls = @restaurant_array
 
