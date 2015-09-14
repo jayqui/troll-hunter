@@ -20,7 +20,7 @@ class Review < ActiveRecord::Base
   end
 
   def sexual?
-    total_words = self.body.split(" ")
+    total_words = self.body.split(" ").map(&:downcase)
     total_words.any?{|word| SEXY_WORDS.include?(word)}
   end
 
@@ -29,13 +29,12 @@ class Review < ActiveRecord::Base
   end
 
   def dramatic?
-    total_words = self.body.split(" ")
+    total_words = self.body.split(" ").map(&:downcase)
     total_words.any?{|word| DRAMATIC_WORDS.include?(word)}
   end
 
 
   def highlighted_review
-    #SEXY_WORDS.each {|word| body.gsub }
     self.body.split(" ").map do |word|
       if SEXY_WORDS.include?(word) || DRAMATIC_WORDS.include?(word)
         "<span class='flag-word'> #{word}</span>"
