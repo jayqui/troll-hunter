@@ -44,7 +44,8 @@ class Review < ActiveRecord::Base
     dictionary.each do |entry|
       body_string.map! do |word|
         if word.downcase.include?(entry)
-          "<span class='#{flag_name}'>#{word}</span>"
+          # "<span class='#{flag_name}'>#{word}</span>"
+          word.gsub(/#{Regexp.quote(entry)}/i, "<span class='#{flag_name}'>#{entry}</span>")
         else
           word
         end
