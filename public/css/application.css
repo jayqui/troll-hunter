@@ -30,7 +30,7 @@ body {
 	text-align: center;
 }
 
-.nav a {
+.nav a, .indie-flower {
 	color: white;
 	font-family: 'Indie Flower', cursive;
 	font-size: 3em;
