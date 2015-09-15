@@ -5,7 +5,7 @@ class Review < ActiveRecord::Base
 
   validate :worthy?
 
-  SEXY_WORDS = %w(sex sexual voluptuous penis cock dick vagina pussy cunt masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative mistress orgy orgasm)
+  SEXY_WORDS = %w(sex sexual voluptuous penis cock dick prick vagina pussy cunt masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative mistress orgy orgasm)
 
   DRAMATIC_WORDS = %w(gross pathetic miserable tacky kardashian jesus christ god ex-husband ex-wife ex-partner ex-boyfriend ex-girlfriend fuck damn shit crap turd bitch asshole asshat twerk terrible horrible 9/11 scum vile fecle fecal douche stupid bastard ??? !!! ?!? !?! ?? nazi)
 
@@ -44,7 +44,7 @@ class Review < ActiveRecord::Base
     dictionary.each do |entry|
       body_words_arr.map! do |word|
         if word.downcase.include?(entry)
-          word.gsub(/#{Regexp.quote(entry)}/i, "<span class='#{flag_name}'>#{entry}</span>")
+          word.gsub(/#{Regexp.quote(entry)}/i) {|e| "<span class='#{flag_name}'>#{e}</span>" }
         else
           word
         end
