@@ -40,18 +40,17 @@ class Review < ActiveRecord::Base
     highlight_words(DRAMATIC_WORDS,split_body,"flag-dramatic")
   end
 
-  def highlight_words(dictionary,body_string,flag_name)
+  def highlight_words(dictionary,body_words_arr,flag_name)
     dictionary.each do |entry|
-      body_string.map! do |word|
+      body_words_arr.map! do |word|
         if word.downcase.include?(entry)
-          # "<span class='#{flag_name}'>#{word}</span>"
           word.gsub(/#{Regexp.quote(entry)}/i, "<span class='#{flag_name}'>#{entry}</span>")
         else
           word
         end
       end
     end
-    return body_string.join(" ")
+    return body_words_arr.join(" ")
   end
 
   def generate_scores
