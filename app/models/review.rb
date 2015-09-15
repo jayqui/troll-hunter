@@ -5,9 +5,9 @@ class Review < ActiveRecord::Base
 
   validate :worthy?
 
-  SEXY_WORDS = %w(sexy sex sexual voluptuous penis vagina pussy masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative mistress dick orgy orgasm)
+  SEXY_WORDS = %w(sex sexual voluptuous penis cock dick vagina pussy cunt masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative mistress orgy orgasm)
 
-  DRAMATIC_WORDS = %w(gross pathetic miserable tacky kardashian jesus christ god ex-husband ex-wife ex-partner ex-boyfriend ex-girlfriend fuck fucking motherfucking motherfucker damn goddamn shit shitty crap crappy cock turd bitch cunt ass asshole asshat asshats twerk terrible horrible 9/11 scum vile fecle fecal douche douchebag stupid dickwad bastard cocksucker ??? !!! ?!? !?! ?? nazi)
+  DRAMATIC_WORDS = %w(gross pathetic miserable tacky kardashian jesus christ god ex-husband ex-wife ex-partner ex-boyfriend ex-girlfriend fuck damn shit crap turd bitch asshole asshat twerk terrible horrible 9/11 scum vile fecle fecal douche stupid bastard ??? !!! ?!? !?! ?? nazi)
 
   def worthy?
     unless self.sexual? || self.dramatic?
@@ -35,22 +35,22 @@ class Review < ActiveRecord::Base
 
 
   def highlighted_review
-    highlight_words(SEXY_WORDS,"flag-sexy")
-    highlight_words(DRAMATIC_WORDS,"flag-dramatic")
+    split_body = self.body.split(" ")
+    highlight_words(SEXY_WORDS,split_body,"flag-sexy")
+    highlight_words(DRAMATIC_WORDS,split_body,"flag-dramatic")
   end
 
-  def highlight_words(dictionary,flag_name)
-    split_body = self.body.split(" ")
+  def highlight_words(dictionary,body_string,flag_name)
     dictionary.each do |entry|
-      split_body.map! do |word|
+      body_string.map! do |word|
         if word.downcase.include?(entry)
-          "<span class='#{flag_name}'> #{word}</span>"
+          "<span class='#{flag_name}'>#{word}</span>"
         else
           word
         end
       end
     end
-    return split_body.join(" ")
+    return body_string.join(" ")
   end
 
   def generate_scores
