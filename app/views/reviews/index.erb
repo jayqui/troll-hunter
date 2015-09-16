@@ -1,5 +1,6 @@
-<h1> Here are the douchiest reviews! </h1>
+<h1> Here are the trolliest reviews! </h1>
  <% @reviews.each do |review| %>
-    <p> <div class="restaurant-name"> Restaurant: <%=review.restaurant.full_name %></div> Douche Score: <%=review.combined_score %> </p>
-    <p><%= review.highlighted_review %> </p> <br>
+    <p> <div class="restaurant-name"> Restaurant: <%=review.restaurant.full_name %></div> </p>
+    <p><%= review.highlighted_review %> </p>
+ 		<span class="douche-score"> Troll Score:<%=review.combined_score %></span><br><br>
   <% end %>

@@ -5,9 +5,9 @@ class Review < ActiveRecord::Base
 
   validate :worthy?
 
-  SEXY_WORDS = %w(sexy sex sexual voluptuous penis vagina pussy masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative mistress dick orgy orgasm)
+  SEXY_WORDS = %w(sex sexual voluptuous penis cock dick prick vagina pussy cunt masturbation masturbate erotic come-hither sensuous suggestive titillating seductive racy inviting provacative mistress orgy orgasm)
 
-  DRAMATIC_WORDS = %w(gross pathetic miserable tacky kardashian jesus christ god ex-husband ex-wife ex-partner ex-boyfriend ex-girlfriend fuck fucking motherfucking motherfucker damn goddamn shit shitty crap crappy cock bitch cunt ass asshole asshat asshats twerk terrible horrible 9/11 scum vile fecle fecal douche douchebag dickwad bastard cocksucker ??? !!! ?!? !?! ?? nazi)
+  DRAMATIC_WORDS = %w(gross pathetic miserable tacky kardashian jesus christ god ex-husband ex-wife ex-partner ex-boyfriend ex-girlfriend fuck damn shit crap turd bitch asshole asshat twerk terrible horrible 9/11 scum vile fecle fecal douche stupid bastard ??? !!! ?!? !?! ?? nazi)
 
   def worthy?
     unless self.sexual? || self.dramatic?
@@ -35,14 +35,22 @@ class Review < ActiveRecord::Base
 
 
   def highlighted_review
-    #SEXY_WORDS.each {|word| body.gsub }
-    self.body.split(" ").map do |word|
-      if SEXY_WORDS.include?(word) || DRAMATIC_WORDS.include?(word)
-        "<span class='flag-word'> #{word}</span>"
-      else
-        word
+    split_body = self.body.split(" ")
+    highlight_words(SEXY_WORDS,split_body,"flag-sexy")
+    highlight_words(DRAMATIC_WORDS,split_body,"flag-dramatic")
+  end
+
+  def highlight_words(dictionary,body_words_arr,flag_name)
+    dictionary.each do |entry|
+      body_words_arr.map! do |word|
+        if word.downcase.include?(entry)
+          word.gsub(/#{Regexp.quote(entry)}/i) {|e| "<span class='#{flag_name}'>#{e}</span>" }
+        else
+          word
+        end
       end
-    end.join(" ")
+    end
+    return body_words_arr.join(" ")
   end
 
   def generate_scores
@@ -59,13 +67,15 @@ class Review < ActiveRecord::Base
   def generate_drama_score
     total_words = self.body.split(" ")
     found_one = false
-    total_words.each do |word|
-      if DRAMATIC_WORDS.include?(word.downcase)
-        found_one = true
-        if self.drama_score
-          self.drama_score += 1
-        else
-          self.drama_score = 1
+    DRAMATIC_WORDS.each do |entry|
+      total_words.each do |word|
+        if word.downcase.include?(entry)
+          found_one = true
+          if self.drama_score
+            self.drama_score += 1
+          else
+            self.drama_score = 1
+          end
         end
       end
     end
@@ -75,13 +85,15 @@ class Review < ActiveRecord::Base
   def generate_sex_score
     total_words = self.body.split(" ")
     found_one = false
-    total_words.each do |word|
-      if SEXY_WORDS.include?(word.downcase)
-        found_one = true
-        if self.sex_score
-          self.sex_score += 1
-        else
-          self.sex_score = 1
+    SEXY_WORDS.each do |entry|
+      total_words.each do |word|
+        if word.downcase.include?(entry)
+          found_one = true
+          if self.sex_score
+            self.sex_score += 1
+          else
+            self.sex_score = 1
+          end
         end
       end
     end
