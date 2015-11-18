@@ -9,17 +9,8 @@
 }
 
 body {
-	/*background-image: url("http://www.momorialcards.com/images/light_textured_backround.jpg");*/
-	/*background-image: url("https://c2.staticflickr.com/2/1019/5184949637_851f054bb9_b.jpg");*/
-	background-image: url("http://img06.deviantart.net/8bb9/i/2010/270/0/9/premade_room_background_12_by_farrahscreations-d2zmb1y.jpg");
-	background-position: fixed;
+	background: transparent url("http://img06.deviantart.net/8bb9/i/2010/270/0/9/premade_room_background_12_by_farrahscreations-d2zmb1y.jpg") no-repeat fixed;
 	background-size: 100% 100%;
-
-	background-color: transparent;
-	/*background-color: #636;*/
-
-	background-attachment: fixed;
-	background-repeat: no-repeat;
 }
 
 .nav {
@@ -37,11 +28,11 @@ body {
 }
 
 .flag-sexy {
-  background: yellow;
+  background: #ed506a;
 }
 
 .flag-dramatic {
-  background: #F86;
+  background: #cc89b2;
 }
 
 .outer-container {
